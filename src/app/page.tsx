@@ -114,7 +114,7 @@ export default function Home() {
         </div>
 
         {/* Daily Spiritual Reminder */}
-        <SpiritualReminder reminder={reminders[1]} showLoop />
+        <SpiritualReminder reminder={reminders[1]} showLoop soundIndex={1} />
       </main>
 
       <NavBar />

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import { dhikrItems } from "@/lib/spiritual-data";
-import { playDhikrTone } from "@/lib/audio";
+import { playDhikrSound } from "@/lib/audio";
 
 export default function CalmPage() {
   const [active, setActive] = useState(false);
@@ -56,7 +56,7 @@ export default function CalmPage() {
       stopRef.current?.();
       setAudioPlaying(false);
     } else {
-      const { stop } = playDhikrTone(6, true);
+      const { stop } = playDhikrSound(dhikrIndex, 7, true);
       stopRef.current = stop;
       setAudioPlaying(true);
     }

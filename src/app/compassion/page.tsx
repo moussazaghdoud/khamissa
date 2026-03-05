@@ -49,7 +49,7 @@ export default function CompassionPage() {
               <p className="text-sm italic text-[var(--foreground)]">&laquo; {message} &raquo;</p>
             </div>
 
-            <SpiritualReminder reminder={reminders[3]} showLoop />
+            <SpiritualReminder reminder={reminders[3]} showLoop soundIndex={3} />
 
             <button
               onClick={() => {
@@ -103,7 +103,7 @@ export default function CompassionPage() {
           Enregistrer le message
         </button>
 
-        <SpiritualReminder reminder={reminders[3]} />
+        <SpiritualReminder reminder={reminders[3]} soundIndex={5} />
 
         {/* Past messages */}
         {entries.length > 0 && (

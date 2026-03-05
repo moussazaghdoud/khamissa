@@ -158,7 +158,7 @@ export default function TimerPage() {
         </div>
 
         {!isWithinWindow && active && (
-          <SpiritualReminder reminder={reminders[2]} showLoop />
+          <SpiritualReminder reminder={reminders[2]} showLoop soundIndex={2} />
         )}
       </main>
 

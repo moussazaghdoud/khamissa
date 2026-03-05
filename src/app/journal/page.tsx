@@ -57,7 +57,7 @@ export default function JournalPage() {
               </p>
             </div>
 
-            <SpiritualReminder reminder={reminders[3]} showLoop />
+            <SpiritualReminder reminder={reminders[3]} showLoop soundIndex={3} />
 
             <button
               onClick={handleNew}

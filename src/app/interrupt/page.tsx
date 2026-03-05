@@ -107,7 +107,7 @@ export default function InterruptPage() {
               </div>
             </div>
 
-            <SpiritualReminder reminder={reminders[4]} showLoop />
+            <SpiritualReminder reminder={reminders[4]} showLoop soundIndex={4} />
 
             <button
               onClick={() => {
@@ -182,7 +182,7 @@ export default function InterruptPage() {
             className="w-full h-32 rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-4 text-base resize-none focus:outline-none focus:border-[var(--primary-light)] transition-colors placeholder:text-[var(--text-muted)]/50"
           />
 
-          <SpiritualReminder reminder={reminders[currentStep.reminderIndex]} />
+          <SpiritualReminder reminder={reminders[currentStep.reminderIndex]} soundIndex={currentStep.reminderIndex} />
 
           <button
             onClick={handleNext}

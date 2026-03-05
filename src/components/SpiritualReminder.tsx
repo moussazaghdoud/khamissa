@@ -2,14 +2,15 @@
 
 import { useState, useRef } from "react";
 import type { SpiritualReminder as SpiritualReminderType } from "@/lib/spiritual-data";
-import { playDhikrTone } from "@/lib/audio";
+import { playDhikrSound } from "@/lib/audio";
 
 interface Props {
   reminder: SpiritualReminderType;
   showLoop?: boolean;
+  soundIndex?: number;
 }
 
-export default function SpiritualReminder({ reminder, showLoop = false }: Props) {
+export default function SpiritualReminder({ reminder, showLoop = false, soundIndex = 4 }: Props) {
   const [playing, setPlaying] = useState(false);
   const [looping, setLooping] = useState(false);
   const stopRef = useRef<(() => void) | null>(null);
@@ -22,11 +23,9 @@ export default function SpiritualReminder({ reminder, showLoop = false }: Props)
       return;
     }
     setPlaying(true);
-    const { stop } = playDhikrTone(6, looping);
+    const { stop } = playDhikrSound(soundIndex, 7, false);
     stopRef.current = stop;
-    if (!looping) {
-      setTimeout(() => setPlaying(false), 6000);
-    }
+    setTimeout(() => setPlaying(false), 7000);
   };
 
   const handleLoop = () => {
@@ -38,7 +37,7 @@ export default function SpiritualReminder({ reminder, showLoop = false }: Props)
     }
     setLooping(true);
     setPlaying(true);
-    const { stop } = playDhikrTone(6, true);
+    const { stop } = playDhikrSound(soundIndex, 7, true);
     stopRef.current = stop;
   };
 
