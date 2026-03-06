@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import EmergencyCalm from "@/components/EmergencyCalm";
 
 export const metadata: Metadata = {
   title: "Cognitive Reset - Guerir l'esprit par la reflexion et le rappel",
@@ -20,7 +21,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <EmergencyCalm />
+      </body>
     </html>
   );
 }
