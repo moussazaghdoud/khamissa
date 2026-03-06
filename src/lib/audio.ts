@@ -43,43 +43,74 @@ export function unlockAudio() {
   audio.play().catch(() => {});
 }
 
+// Circular dhikr: cycles through all 4 dhikr clips when looping
+// SubhanAllah → Alhamdulillah → Allahu Akbar → Hasbiya Allah → repeat
 export function playDhikrSound(
   soundIndex: number = 0,
   _duration: number = 7,
   loop: boolean = false
 ): { stop: () => void } {
-  const file = soundIndexToFile[soundIndex % soundIndexToFile.length];
-  const audio = new Audio(file);
-  audio.loop = loop;
-  audio.volume = 1.0;
-  audio.play().catch(() => {});
+  let stopped = false;
+  let currentAudio: HTMLAudioElement | null = null;
+  let currentIndex = soundIndex % dhikrFiles.length;
+
+  const playNext = () => {
+    if (stopped) return;
+    const file = loop ? dhikrFiles[currentIndex % dhikrFiles.length] : soundIndexToFile[soundIndex % soundIndexToFile.length];
+    currentAudio = new Audio(file);
+    currentAudio.volume = 1.0;
+
+    if (loop) {
+      currentAudio.addEventListener("ended", () => {
+        currentIndex++;
+        playNext();
+      });
+    }
+
+    currentAudio.play().catch(() => {});
+  };
+
+  playNext();
 
   const stop = () => {
-    audio.pause();
-    audio.currentTime = 0;
-    audio.loop = false;
+    stopped = true;
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
   };
 
   return { stop };
 }
 
 // Play a specific Quranic verse recitation by verse key (e.g. "013028")
+// When looping, replays the same verse (not cycling — verses are context-specific)
 export function playVerseAudio(verseKey: string, loop: boolean = false): { stop: () => void } {
   const file = verseFiles[verseKey];
   if (!file) {
-    // Fallback to a dhikr sound if verse not found
     return playDhikrSound(0, 7, loop);
   }
 
   const audio = new Audio(file);
-  audio.loop = loop;
   audio.volume = 1.0;
+
+  let stopped = false;
+
+  if (loop) {
+    audio.addEventListener("ended", () => {
+      if (!stopped) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
+    });
+  }
+
   audio.play().catch(() => {});
 
   const stop = () => {
+    stopped = true;
     audio.pause();
     audio.currentTime = 0;
-    audio.loop = false;
   };
 
   return { stop };
