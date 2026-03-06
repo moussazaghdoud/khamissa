@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import type { SpiritualReminder as SpiritualReminderType } from "@/lib/spiritual-data";
-import { playDhikrSound } from "@/lib/audio";
+import { playVerseAudio, playDhikrSound } from "@/lib/audio";
 
 interface Props {
   reminder: SpiritualReminderType;
@@ -10,7 +10,7 @@ interface Props {
   soundIndex?: number;
 }
 
-export default function SpiritualReminder({ reminder, showLoop = false, soundIndex = 4 }: Props) {
+export default function SpiritualReminder({ reminder, showLoop = false, soundIndex }: Props) {
   const [playing, setPlaying] = useState(false);
   const [looping, setLooping] = useState(false);
   const stopRef = useRef<(() => void) | null>(null);
@@ -23,9 +23,15 @@ export default function SpiritualReminder({ reminder, showLoop = false, soundInd
       return;
     }
     setPlaying(true);
-    const { stop } = playDhikrSound(soundIndex, 7, false);
+
+    // Play verse audio if available, otherwise dhikr by soundIndex
+    const { stop } = reminder.verseKey
+      ? playVerseAudio(reminder.verseKey, false)
+      : playDhikrSound(soundIndex ?? 0, 10, false);
     stopRef.current = stop;
-    setTimeout(() => setPlaying(false), 7000);
+
+    // Auto-reset playing state when audio ends (approximate for verse files)
+    setTimeout(() => setPlaying(false), 20000);
   };
 
   const handleLoop = () => {
@@ -37,7 +43,10 @@ export default function SpiritualReminder({ reminder, showLoop = false, soundInd
     }
     setLooping(true);
     setPlaying(true);
-    const { stop } = playDhikrSound(soundIndex, 7, true);
+
+    const { stop } = reminder.verseKey
+      ? playVerseAudio(reminder.verseKey, true)
+      : playDhikrSound(soundIndex ?? 0, 10, true);
     stopRef.current = stop;
   };
 
