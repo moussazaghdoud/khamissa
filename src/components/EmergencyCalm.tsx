@@ -116,7 +116,7 @@ export default function EmergencyCalm() {
     return (
       <button
         onClick={handleOpen}
-        className="fixed bottom-20 right-4 z-50 bg-[var(--accent)] text-white px-4 py-3 rounded-full shadow-lg text-sm font-medium hover:bg-[var(--accent)]/85 transition-all animate-pulse-glow"
+        className="fixed bottom-24 right-4 z-40 bg-[var(--accent)] text-white px-4 py-3 rounded-full shadow-lg text-sm font-medium active:scale-95 transition-transform touch-manipulation"
         style={{ boxShadow: "0 4px 20px rgba(212, 165, 116, 0.4)" }}
       >
         Je suis mal
