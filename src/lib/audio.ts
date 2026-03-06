@@ -1,15 +1,30 @@
 // Web Audio API — distinct calming sounds for each dhikr
 
 let audioContext: AudioContext | null = null;
+let unlocked = false;
 
 function getAudioContext(): AudioContext {
   if (!audioContext) {
-    audioContext = new AudioContext();
+    audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
   }
   if (audioContext.state === "suspended") {
     audioContext.resume();
   }
+  // On mobile (iOS/Android), play a silent buffer on first interaction to unlock audio
+  if (!unlocked && audioContext.state === "running") {
+    unlocked = true;
+    const buf = audioContext.createBuffer(1, 1, 22050);
+    const src = audioContext.createBufferSource();
+    src.buffer = buf;
+    src.connect(audioContext.destination);
+    src.start(0);
+  }
   return audioContext;
+}
+
+// Call this early on any user tap/click to ensure audio works on mobile
+export function unlockAudio() {
+  getAudioContext();
 }
 
 // Each dhikr has its own unique sound profile
@@ -20,7 +35,7 @@ const soundProfiles = [
     type: "sine" as OscillatorType,
     attack: 1.0,
     release: 1.5,
-    volume: 0.12,
+    volume: 0.35,
     detune: [0, 5, -3],
     vibrato: 2,
   },
@@ -30,7 +45,7 @@ const soundProfiles = [
     type: "sine" as OscillatorType,
     attack: 1.2,
     release: 2.0,
-    volume: 0.14,
+    volume: 0.40,
     detune: [0, 0, 7],
     vibrato: 0.8,
   },
@@ -40,7 +55,7 @@ const soundProfiles = [
     type: "triangle" as OscillatorType,
     attack: 0.8,
     release: 1.8,
-    volume: 0.10,
+    volume: 0.30,
     detune: [0, -4, 3, 6],
     vibrato: 1.5,
   },
@@ -50,7 +65,7 @@ const soundProfiles = [
     type: "sine" as OscillatorType,
     attack: 1.5,
     release: 2.5,
-    volume: 0.11,
+    volume: 0.35,
     detune: [0, 8, -5],
     vibrato: 3,
   },
@@ -60,7 +75,7 @@ const soundProfiles = [
     type: "sine" as OscillatorType,
     attack: 0.6,
     release: 2.0,
-    volume: 0.10,
+    volume: 0.30,
     detune: [0, 3, -2],
     vibrato: 1.2,
   },
@@ -70,7 +85,7 @@ const soundProfiles = [
     type: "sine" as OscillatorType,
     attack: 2.0,
     release: 2.0,
-    volume: 0.13,
+    volume: 0.38,
     detune: [0, 5, 10],
     vibrato: 0.5,
   },

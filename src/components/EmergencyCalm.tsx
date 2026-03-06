@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { reminders } from "@/lib/spiritual-data";
-import { playDhikrSound } from "@/lib/audio";
+import { playDhikrSound, unlockAudio } from "@/lib/audio";
 
 type Phase = "breathing" | "dhikr" | "grounding" | "reminder";
 
@@ -19,6 +19,21 @@ export default function EmergencyCalm() {
   const stopAudioRef = useRef<(() => void) | null>(null);
   const breathTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Unlock Web Audio on first user interaction (required for mobile)
+  useEffect(() => {
+    const handler = () => {
+      unlockAudio();
+      window.removeEventListener("touchstart", handler);
+      window.removeEventListener("click", handler);
+    };
+    window.addEventListener("touchstart", handler, { once: true });
+    window.addEventListener("click", handler, { once: true });
+    return () => {
+      window.removeEventListener("touchstart", handler);
+      window.removeEventListener("click", handler);
+    };
+  }, []);
 
   const cleanup = useCallback(() => {
     stopAudioRef.current?.();
