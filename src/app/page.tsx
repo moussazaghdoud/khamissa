@@ -7,6 +7,54 @@ import { reminders } from "@/lib/spiritual-data";
 import { useEffect, useState } from "react";
 import { getRuminationTimer } from "@/lib/storage";
 
+const feelings = [
+  {
+    label: "Une pensee tourne en boucle",
+    description: "Vous n'arrivez pas a sortir d'une idee qui revient sans cesse.",
+    href: "/interrupt",
+    color: "var(--primary)",
+    bgColor: "var(--primary-light)",
+    icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+    action: "Commencer le reset cognitif",
+  },
+  {
+    label: "Je me sens agite ou anxieux",
+    description: "Votre esprit s'emballe et vous avez besoin de calme.",
+    href: "/calm",
+    color: "var(--primary)",
+    bgColor: "var(--primary-light)",
+    icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
+    action: "Respiration & dhikr",
+  },
+  {
+    label: "Je suis dur envers moi-meme",
+    description: "Vous vous jugez, vous vous blAmez pour le passe.",
+    href: "/compassion",
+    color: "var(--accent)",
+    bgColor: "var(--accent-light)",
+    icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+    action: "Ecrire une lettre a soi-meme",
+  },
+  {
+    label: "Je veux faire le point sur ma journee",
+    description: "Prendre un moment pour voir ce qui s'est passe aujourd'hui.",
+    href: "/journal",
+    color: "var(--accent)",
+    bgColor: "var(--accent-light)",
+    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+    action: "Ouvrir le journal",
+  },
+  {
+    label: "Je rumine toute la journee",
+    description: "Les pensees negatives ne s'arretent pas, meme quand vous essayez.",
+    href: "/timer",
+    color: "var(--primary)",
+    bgColor: "var(--primary-light)",
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    action: "Planifier un temps de reflexion",
+  },
+];
+
 export default function Home() {
   const [showTimerReminder, setShowTimerReminder] = useState(false);
 
@@ -27,16 +75,16 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col pb-20">
       {/* Header */}
-      <header className="text-center pt-12 pb-6 px-6">
-        <h1 className="text-3xl font-semibold text-[var(--foreground)] tracking-tight">
+      <header className="text-center pt-10 pb-2 px-6">
+        <h1 className="text-2xl font-semibold text-[var(--foreground)] tracking-tight">
           Cognitive Reset
         </h1>
-        <p className="text-[var(--text-muted)] mt-2 text-base">
+        <p className="text-[var(--text-muted)] mt-1 text-sm">
           Guerir l&apos;esprit par la reflexion et le rappel
         </p>
       </header>
 
-      <main className="flex-1 px-5 max-w-lg mx-auto w-full space-y-6">
+      <main className="flex-1 px-5 max-w-lg mx-auto w-full space-y-5">
         {/* Timer Reminder Banner */}
         {showTimerReminder && (
           <div className="rounded-2xl bg-[var(--accent-light)] p-4 text-center animate-fade-in">
@@ -49,68 +97,52 @@ export default function Home() {
           </div>
         )}
 
-        {/* Main CTA Button */}
-        <Link href="/interrupt" className="block">
-          <div className="rounded-3xl bg-[var(--primary)] p-8 text-center text-white animate-pulse-glow cursor-pointer hover:bg-[var(--primary-dark)] transition-colors">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-            </div>
-            <p className="text-xl font-semibold mb-1">Je suis bloque dans une pensee</p>
-            <p className="text-white/70 text-sm">Commencer le reset cognitif guide</p>
-          </div>
-        </Link>
+        {/* Guided Question */}
+        <div className="rounded-2xl bg-[var(--surface-warm)] p-5 text-center">
+          <p className="text-lg font-medium text-[var(--foreground)]">
+            Comment vous sentez-vous en ce moment ?
+          </p>
+          <p className="text-sm text-[var(--text-muted)] mt-1">
+            Choisissez ce qui vous correspond le mieux.
+          </p>
+        </div>
 
-        {/* Quick Actions Grid */}
-        <div className="grid grid-cols-2 gap-3">
-          <Link href="/calm">
-            <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-5 text-center hover:border-[var(--primary-light)] transition-colors cursor-pointer">
-              <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-[var(--primary-light)]/30 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+        {/* Feeling-based Navigation */}
+        <div className="space-y-3">
+          {feelings.map((feeling) => (
+            <Link key={feeling.href} href={feeling.href} className="block touch-manipulation">
+              <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-4 flex items-start gap-4 active:scale-[0.98] transition-transform hover:border-[var(--primary-light)]">
+                <div
+                  className="w-11 h-11 shrink-0 rounded-full flex items-center justify-center mt-0.5"
+                  style={{ backgroundColor: `color-mix(in srgb, ${feeling.bgColor} 30%, transparent)` }}
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke={feeling.color}
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d={feeling.icon} />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-sm text-[var(--foreground)]">
+                    {feeling.label}
+                  </p>
+                  <p className="text-xs text-[var(--text-muted)] mt-0.5 leading-relaxed">
+                    {feeling.description}
+                  </p>
+                  <p className="text-xs font-medium mt-2" style={{ color: feeling.color }}>
+                    {feeling.action} &rarr;
+                  </p>
+                </div>
               </div>
-              <p className="font-medium text-sm">Mode Calme</p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">Respiration & dhikr</p>
-            </div>
-          </Link>
-
-          <Link href="/journal">
-            <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-5 text-center hover:border-[var(--primary-light)] transition-colors cursor-pointer">
-              <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-[var(--accent-light)]/30 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <p className="font-medium text-sm">Journal Quotidien</p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">Ancrage dans le reel</p>
-            </div>
-          </Link>
-
-          <Link href="/compassion">
-            <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-5 text-center hover:border-[var(--primary-light)] transition-colors cursor-pointer">
-              <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-[var(--primary-light)]/30 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <p className="font-medium text-sm">Auto-Compassion</p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">Lettre a soi-meme</p>
-            </div>
-          </Link>
-
-          <Link href="/timer">
-            <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-5 text-center hover:border-[var(--primary-light)] transition-colors cursor-pointer">
-              <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-[var(--accent-light)]/30 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="font-medium text-sm">Minuteur de Pensee</p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">Planifier le temps d&apos;inquietude</p>
-            </div>
-          </Link>
+            </Link>
+          ))}
         </div>
 
         {/* Daily Spiritual Reminder */}
