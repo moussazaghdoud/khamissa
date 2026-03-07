@@ -3,7 +3,7 @@ import "./globals.css";
 import EmergencyCalm from "@/components/EmergencyCalm";
 
 export const metadata: Metadata = {
-  title: "Cognitive Reset - Guerir l'esprit par la reflexion et le rappel",
+  title: "Cognitive Reset - Retrouver la paix interieure, une etape a la fois",
   description:
     "Un compagnon numerique bienveillant combinant TCC, neurosciences et sagesse spirituelle islamique pour briser les boucles de rumination.",
 };

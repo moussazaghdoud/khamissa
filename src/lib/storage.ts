@@ -99,3 +99,37 @@ export function getRuminationTimer(): RuminationTimer {
 export function saveRuminationTimer(timer: RuminationTimer) {
   setItem("cr_timer", timer);
 }
+
+// Isaac module
+export interface IsaacEntry {
+  id: string;
+  date: string;
+  exercise: number; // 1-5
+  answer: string;
+}
+
+export function getIsaacEntries(): IsaacEntry[] {
+  return getItem("cr_isaac", []);
+}
+
+export function saveIsaacEntry(entry: IsaacEntry) {
+  const entries = getIsaacEntries();
+  entries.unshift(entry);
+  setItem("cr_isaac", entries);
+}
+
+// Journey — tracks which time-of-day steps were completed today
+export function getJourneyToday(): string[] {
+  const data = getItem<{ date: string; completed: string[] }>("cr_journey", { date: "", completed: [] });
+  const today = new Date().toISOString().slice(0, 10);
+  return data.date === today ? data.completed : [];
+}
+
+export function completeJourneyStep(step: string) {
+  const today = new Date().toISOString().slice(0, 10);
+  const completed = getJourneyToday();
+  if (!completed.includes(step)) {
+    completed.push(step);
+  }
+  setItem("cr_journey", { date: today, completed });
+}

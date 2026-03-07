@@ -53,6 +53,24 @@ const feelings = [
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
     action: "Planifier un temps de reflexion",
   },
+  {
+    label: "Je veux suivre mon parcours du jour",
+    description: "Un guide simple : matin, midi, soir, nuit.",
+    href: "/journey",
+    color: "var(--primary)",
+    bgColor: "var(--primary-light)",
+    icon: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z",
+    action: "Commencer le parcours",
+  },
+  {
+    label: "Je me sens coupable envers mon enfant",
+    description: "La culpabilite vous empeche d'avancer. Reconnectons-nous au present.",
+    href: "/isaac",
+    color: "var(--accent)",
+    bgColor: "var(--accent-light)",
+    icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
+    action: "Module pour mon enfant",
+  },
 ];
 
 export default function Home() {
@@ -80,7 +98,7 @@ export default function Home() {
           Cognitive Reset
         </h1>
         <p className="text-[var(--text-muted)] mt-1 text-sm">
-          Guerir l&apos;esprit par la reflexion et le rappel
+          Retrouver la paix interieure, une etape a la fois
         </p>
       </header>
 
