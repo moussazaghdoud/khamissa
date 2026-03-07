@@ -137,12 +137,14 @@ export default function CalmPage() {
               phase === "inhale"
                 ? "scale-100 bg-[var(--primary-light)]/40"
                 : phase === "hold"
-                ? "scale-100 bg-[var(--primary-light)]/50"
-                : "scale-75 bg-[var(--primary-light)]/30"
+                ? "scale-100 bg-[var(--accent-light)]/40"
+                : "scale-75 bg-[var(--accent-light)]/30"
             }`}
           />
           <div className="relative text-center z-10">
-            <p className="text-lg font-medium text-[var(--primary-dark)] capitalize mb-3">
+            <p className={`text-lg font-medium capitalize mb-3 transition-colors duration-[2000ms] ${
+              phase === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
+            }`}>
               {phase === "inhale" ? "Inspirez..." : phase === "hold" ? "Retenez..." : "Expirez..."}
             </p>
             <p className="text-2xl" dir="rtl">{currentDhikr.arabic}</p>
