@@ -138,16 +138,17 @@ export default function CalmPage() {
           <div
             className={`absolute inset-0 rounded-full transition-all duration-[4000ms] ease-in-out ${
               phase === "inhale"
-                ? "scale-100 bg-[var(--primary-light)]/40"
+                ? "scale-100"
                 : phase === "hold"
-                ? "scale-100 bg-[var(--accent-light)]/40"
-                : "scale-75 bg-[var(--accent-light)]/30"
+                ? "scale-100"
+                : "scale-75"
             }`}
+            style={{ backgroundColor: phase === "inhale" ? "var(--inhale-bg)" : "var(--exhale-bg)" }}
           />
           <div className="relative text-center z-10">
-            <p className={`text-lg font-medium capitalize mb-3 transition-colors duration-[2000ms] ${
-              phase === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
-            }`}>
+            <p className="text-lg font-semibold capitalize mb-3 transition-colors duration-[2000ms]"
+              style={{ color: phase === "inhale" ? "var(--inhale)" : "var(--exhale)" }}
+            >
               {phase === "inhale" ? "Inspire..." : phase === "hold" ? "Retiens..." : "Expire..."}
             </p>
             <p className="text-2xl" dir="rtl">{currentDhikr.arabic}</p>

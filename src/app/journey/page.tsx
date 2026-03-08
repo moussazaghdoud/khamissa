@@ -137,12 +137,12 @@ export default function JourneyPage() {
               <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
                 <div className={`absolute inset-0 rounded-full transition-all ease-in-out ${
                   breathPhase === "inhale"
-                    ? "scale-100 bg-[var(--primary-light)]/40 duration-[4000ms]"
-                    : "scale-75 bg-[var(--accent-light)]/30 duration-[6000ms]"
-                }`} />
-                <p className={`relative z-10 text-lg font-medium transition-colors duration-[2000ms] ${
-                  breathPhase === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
-                }`}>
+                    ? "scale-100 duration-[4000ms]"
+                    : "scale-75 duration-[6000ms]"
+                }`} style={{ backgroundColor: breathPhase === "inhale" ? "var(--inhale-bg)" : "var(--exhale-bg)" }} />
+                <p className="relative z-10 text-lg font-semibold transition-colors duration-[2000ms]"
+                  style={{ color: breathPhase === "inhale" ? "var(--inhale)" : "var(--exhale)" }}
+                >
                   {breathPhase === "inhale" ? "Inspire..." : "Expire..."}
                 </p>
               </div>

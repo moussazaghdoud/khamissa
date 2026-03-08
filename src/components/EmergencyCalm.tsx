@@ -144,13 +144,14 @@ export default function EmergencyCalm() {
               <div
                 className={`absolute inset-0 rounded-full transition-all ease-in-out ${
                   breathState === "inhale"
-                    ? "scale-100 bg-[var(--primary-light)]/40 duration-[4000ms]"
-                    : "scale-75 bg-[var(--accent-light)]/30 duration-[6000ms]"
+                    ? "scale-100 duration-[4000ms]"
+                    : "scale-75 duration-[6000ms]"
                 }`}
+                style={{ backgroundColor: breathState === "inhale" ? "var(--inhale-bg)" : "var(--exhale-bg)" }}
               />
-              <p className={`relative z-10 text-lg font-medium transition-colors duration-[2000ms] ${
-                breathState === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
-              }`}>
+              <p className="relative z-10 text-lg font-semibold transition-colors duration-[2000ms]"
+                style={{ color: breathState === "inhale" ? "var(--inhale)" : "var(--exhale)" }}
+              >
                 {breathState === "inhale" ? "Inspire..." : "Expire..."}
               </p>
             </div>

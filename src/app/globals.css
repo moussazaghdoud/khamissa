@@ -13,6 +13,10 @@
   --text-muted: #8a8580;
   --border: #e8e2dc;
   --shadow: rgba(44, 42, 38, 0.06);
+  --inhale: #3a8f7d;
+  --inhale-bg: rgba(58, 143, 125, 0.35);
+  --exhale: #d4764e;
+  --exhale-bg: rgba(212, 118, 78, 0.3);
 }
 
 @theme inline {
