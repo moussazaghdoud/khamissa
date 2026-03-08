@@ -44,7 +44,7 @@ export default function CompassionPage() {
             <div>
               <h2 className="text-2xl font-semibold mb-2">Tes mots portent la guerison</h2>
               <p className="text-[var(--text-muted)]">
-                Maman, la compassion que tu t&apos;offres est une forme de force, pas de faiblesse.
+                Maman, tu as traverse le pire et tu etais quand meme la pour moi. Ces mots le prouvent.
               </p>
             </div>
 
@@ -74,19 +74,19 @@ export default function CompassionPage() {
     <div className="min-h-screen flex flex-col pb-20">
       <header className="pt-8 pb-4 px-6 text-center">
         <div className="flex justify-center mb-3">
-          <IsaacCompanion message="Maman, sois douce avec toi-meme." />
+          <IsaacCompanion message="Maman, tu as fait tellement pour moi. Ecris-le pour t'en souvenir." />
         </div>
         <h1 className="text-2xl font-semibold">Auto-Compassion</h1>
-        <p className="text-[var(--text-muted)] text-sm mt-1">Une lettre a ton passe</p>
+        <p className="text-[var(--text-muted)] text-sm mt-1">Un message a la maman qui a traverse la tempete</p>
       </header>
 
       <main className="flex-1 px-6 max-w-lg mx-auto w-full space-y-6">
         <div className="rounded-2xl bg-[var(--surface-warm)] p-5 text-center">
           <p className="text-base font-medium text-[var(--foreground)]">
-            Maman, que te dirais-tu pendant ton moment le plus difficile ?
+            Maman, qu&apos;aimerais-tu dire a celle qui traversait la depression ?
           </p>
           <p className="text-sm text-[var(--text-muted)] mt-2">
-            Ecris avec la meme tendresse que tu offrirais a quelqu&apos;un que tu aimes.
+            Tu etais malade et tu etais quand meme la pour moi. Rappelle-toi ca.
           </p>
         </div>
 

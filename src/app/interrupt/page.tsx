@@ -95,7 +95,7 @@ export default function InterruptPage() {
             <div>
               <h2 className="text-2xl font-semibold mb-2">Bravo maman</h2>
               <p className="text-[var(--text-muted)]">
-                Tu as fait un pas puissant en examinant cette pensee avec clarte et compassion.
+                Tu as fait un pas puissant en examinant cette pensee avec clarte et courage.
               </p>
             </div>
 

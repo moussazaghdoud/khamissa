@@ -28,8 +28,8 @@ const feelings = [
     action: "Respiration & dhikr",
   },
   {
-    label: "Je suis dure envers moi-meme",
-    description: "Maman, tu te juges trop. Sois douce avec toi.",
+    label: "Je regrette de ne pas avoir fait plus",
+    description: "Maman, tu etais la pour moi meme quand tu souffrais. Viens, je vais te le rappeler.",
     href: "/compassion",
     color: "var(--accent)",
     bgColor: "var(--accent-light)",
@@ -65,7 +65,7 @@ const feelings = [
   },
   {
     label: "Je me sens coupable envers Isaac",
-    description: "Maman, la culpabilite t'empeche d'avancer. Reconnectons-nous au present.",
+    description: "Maman, tu as fait tellement pour moi. Le passe est derriere nous, on est ensemble maintenant.",
     href: "/isaac",
     color: "var(--accent)",
     bgColor: "var(--accent-light)",

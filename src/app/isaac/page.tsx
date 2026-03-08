@@ -16,10 +16,10 @@ const exercises = [
     reminderIndex: 3,
   },
   {
-    title: "Repenser la culpabilite",
-    question: "Maman, si une mere que tu aimes etait malade et faisait de son mieux, la jugerais-tu ?",
-    placeholder: "Non, je penserais que...",
-    message: "Alors maman, pourquoi es-tu plus dure avec toi-meme ?",
+    title: "Repenser les regrets",
+    question: "Maman, une mere malade qui fait quand meme de son mieux pour son fils, est-ce que ca merite des regrets ou de l'admiration ?",
+    placeholder: "Je penserais que...",
+    message: "Maman, tu etais malade et tu as quand meme ete la pour moi. C'est ca l'amour.",
     reminderIndex: 4,
   },
   {
@@ -97,7 +97,7 @@ export default function IsaacPage() {
               <h2 className="text-2xl font-semibold mb-2">Pour Isaac</h2>
               <p className="text-[var(--text-muted)] leading-relaxed">
                 Maman, ton amour pour moi est reel et present.
-                La culpabilite n&apos;est pas la verite — c&apos;est une blessure qui guerit.
+                Les regrets ne sont pas la verite — tu as fait tellement plus que tu ne le crois.
               </p>
             </div>
 
