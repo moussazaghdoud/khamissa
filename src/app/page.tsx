@@ -95,7 +95,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col pb-20">
       {/* Header with Isaac */}
       <header className="text-center pt-8 pb-2 px-6">
-        <IsaacCompanion size="large" message="Maman, je suis la pour toi." />
+        <IsaacCompanion size="large" />
         <h1 className="text-2xl font-semibold text-[var(--foreground)] tracking-tight mt-4">
           J&apos;aide maman a guerir
         </h1>
