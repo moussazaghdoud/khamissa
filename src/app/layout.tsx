@@ -3,7 +3,7 @@ import "./globals.css";
 import EmergencyCalm from "@/components/EmergencyCalm";
 
 export const metadata: Metadata = {
-  title: "J'aide maman a guerir - Isaac",
+  title: "J'aide maman à guérir - Isaac",
   description:
     "Isaac accompagne maman dans son chemin vers la guerison. TCC, neurosciences et sagesse spirituelle islamique.",
 };
