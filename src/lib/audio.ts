@@ -207,12 +207,40 @@ export function playVerseAudio(verseKey: string, loop: boolean = false): { stop:
   return { stop };
 }
 
+// Pre-loaded tondeuse audio for mobile compatibility
+let tondeuseAudio: HTMLAudioElement | null = null;
+
+function getTondeuseAudio(): HTMLAudioElement {
+  if (!tondeuseAudio) {
+    tondeuseAudio = new Audio("/audio/tondeuse.mp3");
+    tondeuseAudio.loop = true;
+    tondeuseAudio.preload = "auto";
+  }
+  return tondeuseAudio;
+}
+
+// Pre-load on first user interaction (called from EmergencyCalm's unlock handler)
+export function preloadTondeuse() {
+  const audio = getTondeuseAudio();
+  audio.load();
+}
+
 // Play gentle lawn mower ambient sound (looping background)
+// MUST be called directly from a user gesture (click/tap) for mobile
 export function playTondeuse(volume: number = 0.4): { stop: () => void } {
-  const audio = new Audio("/audio/tondeuse.mp3");
-  audio.loop = true;
+  const audio = getTondeuseAudio();
   audio.volume = volume;
-  audio.play().catch(() => {});
+  audio.currentTime = 0;
+
+  const playPromise = audio.play();
+  if (playPromise) {
+    playPromise.catch(() => {
+      // Retry: some mobile browsers need a moment after load
+      setTimeout(() => {
+        audio.play().catch(() => {});
+      }, 100);
+    });
+  }
 
   const stop = () => {
     audio.pause();

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { reminders } from "@/lib/spiritual-data";
-import { playDhikrSound, unlockAudio } from "@/lib/audio";
+import { playDhikrSound, unlockAudio, preloadTondeuse } from "@/lib/audio";
 
 type Phase = "breathing" | "dhikr" | "grounding" | "reminder";
 
@@ -24,6 +24,7 @@ export default function EmergencyCalm() {
   useEffect(() => {
     const handler = () => {
       unlockAudio();
+      preloadTondeuse();
       window.removeEventListener("touchstart", handler);
       window.removeEventListener("click", handler);
     };
