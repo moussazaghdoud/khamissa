@@ -97,7 +97,7 @@ export default function Home() {
       <header className="text-center pt-8 pb-2 px-6">
         <IsaacCompanion size="large" />
         <h1 className="text-2xl font-semibold text-[var(--foreground)] tracking-tight mt-4">
-          J&apos;aide maman a gu&eacute;rir
+          J&apos;aide maman &agrave; gu&eacute;rir
         </h1>
         <p className="text-[var(--text-muted)] mt-1 text-sm">
           Isaac t&apos;accompagne, une etape a la fois
