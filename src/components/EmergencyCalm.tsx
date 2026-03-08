@@ -119,7 +119,7 @@ export default function EmergencyCalm() {
         className="fixed bottom-24 right-4 z-40 bg-[var(--accent)] text-white px-4 py-3 rounded-full shadow-lg text-sm font-medium active:scale-95 transition-transform touch-manipulation"
         style={{ boxShadow: "0 4px 20px rgba(212, 165, 116, 0.4)" }}
       >
-        Je suis mal
+        J&apos;angoisse
       </button>
     );
   }
