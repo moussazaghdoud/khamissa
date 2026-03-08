@@ -207,6 +207,21 @@ export function playVerseAudio(verseKey: string, loop: boolean = false): { stop:
   return { stop };
 }
 
+// Play gentle lawn mower ambient sound (looping background)
+export function playTondeuse(volume: number = 0.4): { stop: () => void } {
+  const audio = new Audio("/audio/tondeuse.mp3");
+  audio.loop = true;
+  audio.volume = volume;
+  audio.play().catch(() => {});
+
+  const stop = () => {
+    audio.pause();
+    audio.currentTime = 0;
+  };
+
+  return { stop };
+}
+
 // Bell sound for notifications (synthesized — short UI sound)
 export function playBell() {
   const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();

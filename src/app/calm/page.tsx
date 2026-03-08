@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import IsaacCompanion from "@/components/IsaacCompanion";
 import { dhikrItems } from "@/lib/spiritual-data";
-import { playDhikrSound } from "@/lib/audio";
+import { playDhikrSound, playTondeuse } from "@/lib/audio";
 
 export default function CalmPage() {
   const [active, setActive] = useState(false);
@@ -12,7 +12,9 @@ export default function CalmPage() {
   const [dhikrIndex, setDhikrIndex] = useState(0);
   const [seconds, setSeconds] = useState(120);
   const [audioPlaying, setAudioPlaying] = useState(false);
+  const [tondeuseOn, setTondeuseOn] = useState(false);
   const stopRef = useRef<(() => void) | null>(null);
+  const tondeuseRef = useRef<(() => void) | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const breathRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -49,7 +51,9 @@ export default function CalmPage() {
     if (timerRef.current) clearInterval(timerRef.current);
     if (breathRef.current) clearTimeout(breathRef.current as unknown as ReturnType<typeof setTimeout>);
     stopRef.current?.();
+    tondeuseRef.current?.();
     setAudioPlaying(false);
+    setTondeuseOn(false);
   };
 
   const toggleAudio = () => {
@@ -63,11 +67,23 @@ export default function CalmPage() {
     }
   };
 
+  const toggleTondeuse = () => {
+    if (tondeuseOn) {
+      tondeuseRef.current?.();
+      setTondeuseOn(false);
+    } else {
+      const { stop } = playTondeuse(0.35);
+      tondeuseRef.current = stop;
+      setTondeuseOn(true);
+    }
+  };
+
   useEffect(() => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (breathRef.current) clearTimeout(breathRef.current as unknown as ReturnType<typeof setTimeout>);
       stopRef.current?.();
+      tondeuseRef.current?.();
     };
   }, []);
 
@@ -156,22 +172,33 @@ export default function CalmPage() {
           </div>
         </div>
 
-        {/* Audio toggle */}
-        <div className="mt-10 flex gap-4">
+        {/* Audio toggles */}
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <button
             onClick={toggleAudio}
-            className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
+            className={`px-5 py-3 rounded-full text-sm font-medium transition-all ${
               audioPlaying
                 ? "bg-[var(--primary)] text-white audio-playing"
                 : "bg-[var(--surface)] border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--primary-light)]"
             }`}
           >
-            {audioPlaying ? "Couper le son" : "Lancer l'audio"}
+            {audioPlaying ? "Couper le dhikr" : "Dhikr"}
+          </button>
+
+          <button
+            onClick={toggleTondeuse}
+            className={`px-5 py-3 rounded-full text-sm font-medium transition-all ${
+              tondeuseOn
+                ? "bg-[var(--accent)] text-white"
+                : "bg-[var(--surface)] border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent-light)]"
+            }`}
+          >
+            {tondeuseOn ? "Couper tondeuse" : "Tondeuse"}
           </button>
 
           <button
             onClick={endSession}
-            className="px-6 py-3 rounded-full text-sm font-medium bg-[var(--surface)] border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
+            className="px-5 py-3 rounded-full text-sm font-medium bg-[var(--surface)] border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
           >
             Terminer
           </button>
