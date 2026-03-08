@@ -3,9 +3,9 @@ import "./globals.css";
 import EmergencyCalm from "@/components/EmergencyCalm";
 
 export const metadata: Metadata = {
-  title: "Cognitive Reset - Retrouver la paix interieure, une etape a la fois",
+  title: "J'aide maman a guerir - Isaac",
   description:
-    "Un compagnon numerique bienveillant combinant TCC, neurosciences et sagesse spirituelle islamique pour briser les boucles de rumination.",
+    "Isaac accompagne maman dans son chemin vers la guerison. TCC, neurosciences et sagesse spirituelle islamique.",
 };
 
 export default function RootLayout({

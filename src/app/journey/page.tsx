@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import SpiritualReminder from "@/components/SpiritualReminder";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { reminders } from "@/lib/spiritual-data";
 import { playDhikrSound } from "@/lib/audio";
 import { getJourneyToday, completeJourneyStep, saveJournalEntry } from "@/lib/storage";
@@ -111,10 +112,10 @@ export default function JourneyPage() {
               </div>
               <p className="text-xl font-semibold">Bravo</p>
               <p className="text-sm text-[var(--text-muted)]">
-                {activeStep === "matin" && "Votre journee commence avec clarte et intention."}
-                {activeStep === "midi" && "Vous avez pris un moment pour verifier votre esprit."}
-                {activeStep === "soir" && "Alhamdulillah pour les petites victoires du jour."}
-                {activeStep === "nuit" && "Que votre nuit soit paisible et reparatrice."}
+                {activeStep === "matin" && "Maman, ta journee commence avec clarte et intention."}
+                {activeStep === "midi" && "Maman, tu as pris un moment pour verifier ton esprit. Bravo."}
+                {activeStep === "soir" && "Alhamdulillah pour les petites victoires du jour, maman."}
+                {activeStep === "nuit" && "Maman, que ta nuit soit paisible et reparatrice."}
               </p>
               <SpiritualReminder
                 reminder={activeStep === "nuit" ? reminders[1] : reminders[0]}
@@ -131,7 +132,7 @@ export default function JourneyPage() {
           {state.phase === "breathing" && (
             <div className="animate-fade-in text-center space-y-6 mt-8">
               <p className="text-sm text-[var(--text-muted)]">
-                {activeStep === "matin" ? "Prenons un moment pour commencer la journee." : "Preparons l'esprit pour le repos."}
+                {activeStep === "matin" ? "Maman, prenons un moment pour commencer la journee." : "Maman, preparons ton esprit pour le repos."}
               </p>
               <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
                 <div className={`absolute inset-0 rounded-full transition-all ease-in-out ${
@@ -142,7 +143,7 @@ export default function JourneyPage() {
                 <p className={`relative z-10 text-lg font-medium transition-colors duration-[2000ms] ${
                   breathPhase === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
                 }`}>
-                  {breathPhase === "inhale" ? "Inspirez..." : "Expirez..."}
+                  {breathPhase === "inhale" ? "Inspire..." : "Expire..."}
                 </p>
               </div>
               <button
@@ -160,7 +161,7 @@ export default function JourneyPage() {
               {/* MATIN */}
               {activeStep === "matin" && (
                 <>
-                  <h2 className="text-xl font-semibold">Quelle est une petite chose que je peux faire aujourd&apos;hui ?</h2>
+                  <h2 className="text-xl font-semibold">Maman, quelle est une petite chose que tu peux faire aujourd&apos;hui ?</h2>
                   <p className="text-sm text-[var(--text-muted)]">Pas besoin de viser grand. Un tout petit pas suffit.</p>
                   <textarea
                     value={state.answer || ""}
@@ -178,8 +179,8 @@ export default function JourneyPage() {
               {/* MIDI */}
               {activeStep === "midi" && (
                 <>
-                  <h2 className="text-xl font-semibold">Mon esprit est-il bloque sur une pensee ?</h2>
-                  <p className="text-sm text-[var(--text-muted)]">Prenez un instant pour observer votre etat mental.</p>
+                  <h2 className="text-xl font-semibold">Maman, ton esprit est-il bloque sur une pensee ?</h2>
+                  <p className="text-sm text-[var(--text-muted)]">Prends un instant pour observer ton etat mental.</p>
                   <div className="space-y-3">
                     <Link href="/interrupt" onClick={() => { audioStop?.(); }}>
                       <div className="rounded-2xl bg-[var(--primary)] text-white p-4 text-center font-medium touch-manipulation">
@@ -198,10 +199,10 @@ export default function JourneyPage() {
               {activeStep === "soir" && (
                 <>
                   <h2 className="text-xl font-semibold">Realite de la journee</h2>
-                  <p className="text-sm text-[var(--text-muted)]">Ancrez-vous dans ce qui s&apos;est reellement passe.</p>
+                  <p className="text-sm text-[var(--text-muted)]">Maman, ancre-toi dans ce qui s&apos;est reellement passe.</p>
                   <div className="space-y-4">
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Qu&apos;ai-je fait aujourd&apos;hui ?</label>
+                      <label className="text-sm font-medium mb-2 block">Maman, qu&apos;as-tu fait aujourd&apos;hui ?</label>
                       <textarea
                         value={state.answers?.[0] || ""}
                         onChange={(e) => setState((s) => {
@@ -214,7 +215,7 @@ export default function JourneyPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Qu&apos;est-ce qui s&apos;est mieux passe que prevu ?</label>
+                      <label className="text-sm font-medium mb-2 block">Maman, qu&apos;est-ce qui s&apos;est mieux passe que prevu ?</label>
                       <textarea
                         value={state.answers?.[1] || ""}
                         onChange={(e) => setState((s) => {
@@ -227,7 +228,7 @@ export default function JourneyPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Quelle pensee negative a essaye de me tromper aujourd&apos;hui ?</label>
+                      <label className="text-sm font-medium mb-2 block">Maman, quelle pensee negative a essaye de te tromper aujourd&apos;hui ?</label>
                       <textarea
                         value={state.answers?.[2] || ""}
                         onChange={(e) => setState((s) => {
@@ -250,7 +251,7 @@ export default function JourneyPage() {
               {activeStep === "nuit" && (
                 <>
                   <h2 className="text-xl font-semibold">Moment d&apos;apaisement</h2>
-                  <p className="text-sm text-[var(--text-muted)]">Laissez les pensees de la journee se poser doucement.</p>
+                  <p className="text-sm text-[var(--text-muted)]">Maman, laisse les pensees de la journee se poser doucement.</p>
                   <SpiritualReminder reminder={reminders[1]} showLoop soundIndex={1} />
                   <button onClick={finishStep} className="w-full py-4 rounded-2xl bg-[var(--primary)] text-white font-medium touch-manipulation">
                     Bonne nuit
@@ -268,7 +269,10 @@ export default function JourneyPage() {
   // Main journey overview
   return (
     <div className="min-h-screen flex flex-col pb-20">
-      <header className="pt-10 pb-4 px-6 text-center">
+      <header className="pt-8 pb-4 px-6 text-center">
+        <div className="flex justify-center mb-3">
+          <IsaacCompanion message="Maman, suivons le parcours ensemble." />
+        </div>
         <h1 className="text-2xl font-semibold">Parcours du Jour</h1>
         <p className="text-[var(--text-muted)] text-sm mt-1">Un guide simple pour chaque moment de la journee</p>
       </header>
@@ -312,7 +316,7 @@ export default function JourneyPage() {
         })}
 
         <div className="rounded-2xl bg-[var(--surface-warm)] p-4 text-center text-sm text-[var(--text-muted)]">
-          <p>Completez chaque etape a votre rythme.</p>
+          <p>Maman, complete chaque etape a ton rythme.</p>
           <p className="mt-1">Pas de pression. Chaque petit pas compte.</p>
         </div>
       </main>

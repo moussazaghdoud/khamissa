@@ -3,6 +3,7 @@
 import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import SpiritualReminder from "@/components/SpiritualReminder";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { reminders } from "@/lib/spiritual-data";
 import { useEffect, useState } from "react";
 import { getRuminationTimer } from "@/lib/storage";
@@ -10,16 +11,16 @@ import { getRuminationTimer } from "@/lib/storage";
 const feelings = [
   {
     label: "Une pensee tourne en boucle",
-    description: "Vous n'arrivez pas a sortir d'une idee qui revient sans cesse.",
+    description: "Maman, tu n'arrives pas a sortir d'une idee qui revient sans cesse. Viens, on va la regarder ensemble.",
     href: "/interrupt",
     color: "var(--primary)",
     bgColor: "var(--primary-light)",
     icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
-    action: "Commencer le reset cognitif",
+    action: "On commence le reset ensemble",
   },
   {
-    label: "Je me sens agite ou anxieux",
-    description: "Votre esprit s'emballe et vous avez besoin de calme.",
+    label: "Je me sens agitee ou anxieuse",
+    description: "Maman, ton esprit s'emballe. Viens respirer avec moi.",
     href: "/calm",
     color: "var(--primary)",
     bgColor: "var(--primary-light)",
@@ -27,17 +28,17 @@ const feelings = [
     action: "Respiration & dhikr",
   },
   {
-    label: "Je suis dur envers moi-meme",
-    description: "Vous vous jugez, vous vous blAmez pour le passe.",
+    label: "Je suis dure envers moi-meme",
+    description: "Maman, tu te juges trop. Sois douce avec toi.",
     href: "/compassion",
     color: "var(--accent)",
     bgColor: "var(--accent-light)",
     icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
-    action: "Ecrire une lettre a soi-meme",
+    action: "Ecrire une lettre a toi-meme",
   },
   {
     label: "Je veux faire le point sur ma journee",
-    description: "Prendre un moment pour voir ce qui s'est passe aujourd'hui.",
+    description: "Maman, raconte-moi ce qui s'est passe aujourd'hui.",
     href: "/journal",
     color: "var(--accent)",
     bgColor: "var(--accent-light)",
@@ -46,7 +47,7 @@ const feelings = [
   },
   {
     label: "Je rumine toute la journee",
-    description: "Les pensees negatives ne s'arretent pas, meme quand vous essayez.",
+    description: "Maman, les pensees negatives ne s'arretent pas. On va les apprivoiser.",
     href: "/timer",
     color: "var(--primary)",
     bgColor: "var(--primary-light)",
@@ -55,7 +56,7 @@ const feelings = [
   },
   {
     label: "Je veux suivre mon parcours du jour",
-    description: "Un guide simple : matin, midi, soir, nuit.",
+    description: "Maman, on suit le parcours ensemble : matin, midi, soir, nuit.",
     href: "/journey",
     color: "var(--primary)",
     bgColor: "var(--primary-light)",
@@ -63,13 +64,13 @@ const feelings = [
     action: "Commencer le parcours",
   },
   {
-    label: "Je me sens coupable envers mon enfant",
-    description: "La culpabilite vous empeche d'avancer. Reconnectons-nous au present.",
+    label: "Je me sens coupable envers Isaac",
+    description: "Maman, la culpabilite t'empeche d'avancer. Reconnectons-nous au present.",
     href: "/isaac",
     color: "var(--accent)",
     bgColor: "var(--accent-light)",
     icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
-    action: "Module pour mon enfant",
+    action: "Module avec Isaac",
   },
 ];
 
@@ -92,13 +93,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col pb-20">
-      {/* Header */}
-      <header className="text-center pt-10 pb-2 px-6">
-        <h1 className="text-2xl font-semibold text-[var(--foreground)] tracking-tight">
-          Cognitive Reset
+      {/* Header with Isaac */}
+      <header className="text-center pt-8 pb-2 px-6">
+        <IsaacCompanion size="large" message="Maman, je suis la pour toi." />
+        <h1 className="text-2xl font-semibold text-[var(--foreground)] tracking-tight mt-4">
+          J&apos;aide maman a guerir
         </h1>
         <p className="text-[var(--text-muted)] mt-1 text-sm">
-          Retrouver la paix interieure, une etape a la fois
+          Isaac t&apos;accompagne, une etape a la fois
         </p>
       </header>
 
@@ -107,10 +109,10 @@ export default function Home() {
         {showTimerReminder && (
           <div className="rounded-2xl bg-[var(--accent-light)] p-4 text-center animate-fade-in">
             <p className="text-sm font-medium text-[var(--foreground)]">
-              Vous pouvez laisser cette pensee se reposer pour l&apos;instant.
+              Maman, tu peux laisser cette pensee se reposer pour l&apos;instant.
             </p>
             <p className="text-xs text-[var(--text-muted)] mt-1">
-              Votre temps de reflexion est programme. Faites confiance au processus.
+              Ton temps de reflexion est programme. Fais confiance au processus.
             </p>
           </div>
         )}
@@ -118,10 +120,10 @@ export default function Home() {
         {/* Guided Question */}
         <div className="rounded-2xl bg-[var(--surface-warm)] p-5 text-center">
           <p className="text-lg font-medium text-[var(--foreground)]">
-            Comment vous sentez-vous en ce moment ?
+            Maman, comment te sens-tu en ce moment ?
           </p>
           <p className="text-sm text-[var(--text-muted)] mt-1">
-            Choisissez ce qui vous correspond le mieux.
+            Choisis ce qui te correspond le mieux.
           </p>
         </div>
 

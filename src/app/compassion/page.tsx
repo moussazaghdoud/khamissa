@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import SpiritualReminder from "@/components/SpiritualReminder";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { reminders } from "@/lib/spiritual-data";
 import { saveCompassionEntry, getCompassionEntries, type CompassionEntry } from "@/lib/storage";
 
@@ -38,10 +39,12 @@ export default function CompassionPage() {
               </svg>
             </div>
 
+            <IsaacCompanion message="Tes mots sont beaux, maman." />
+
             <div>
-              <h2 className="text-2xl font-semibold mb-2">Vos mots portent la guerison</h2>
+              <h2 className="text-2xl font-semibold mb-2">Tes mots portent la guerison</h2>
               <p className="text-[var(--text-muted)]">
-                La compassion que vous vous offrez est une forme de force, pas de faiblesse.
+                Maman, la compassion que tu t&apos;offres est une forme de force, pas de faiblesse.
               </p>
             </div>
 
@@ -69,18 +72,21 @@ export default function CompassionPage() {
 
   return (
     <div className="min-h-screen flex flex-col pb-20">
-      <header className="pt-10 pb-4 px-6 text-center">
+      <header className="pt-8 pb-4 px-6 text-center">
+        <div className="flex justify-center mb-3">
+          <IsaacCompanion message="Maman, sois douce avec toi-meme." />
+        </div>
         <h1 className="text-2xl font-semibold">Auto-Compassion</h1>
-        <p className="text-[var(--text-muted)] text-sm mt-1">Une lettre a votre passe</p>
+        <p className="text-[var(--text-muted)] text-sm mt-1">Une lettre a ton passe</p>
       </header>
 
       <main className="flex-1 px-6 max-w-lg mx-auto w-full space-y-6">
         <div className="rounded-2xl bg-[var(--surface-warm)] p-5 text-center">
           <p className="text-base font-medium text-[var(--foreground)]">
-            Que diriez-vous a vous-meme pendant votre moment le plus difficile ?
+            Maman, que te dirais-tu pendant ton moment le plus difficile ?
           </p>
           <p className="text-sm text-[var(--text-muted)] mt-2">
-            Ecrivez avec la meme tendresse que vous offririez a quelqu&apos;un que vous aimez.
+            Ecris avec la meme tendresse que tu offrirais a quelqu&apos;un que tu aimes.
           </p>
         </div>
 
@@ -108,7 +114,7 @@ export default function CompassionPage() {
         {/* Past messages */}
         {entries.length > 0 && (
           <div className="space-y-3">
-            <p className="text-sm text-[var(--text-muted)]">Vos messages de compassion passes :</p>
+            <p className="text-sm text-[var(--text-muted)]">Tes messages de compassion passes :</p>
             {entries.slice(0, 5).map((entry) => (
               <div
                 key={entry.id}

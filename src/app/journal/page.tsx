@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import SpiritualReminder from "@/components/SpiritualReminder";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { reminders } from "@/lib/spiritual-data";
 import { saveJournalEntry, getJournalEntries, type JournalEntry } from "@/lib/storage";
 
@@ -50,10 +51,12 @@ export default function JournalPage() {
               </svg>
             </div>
 
+            <IsaacCompanion message="Merci maman d'avoir ecrit tout ca." />
+
             <div>
               <h2 className="text-2xl font-semibold mb-2">Alhamdulillah pour les bienfaits d&apos;aujourd&apos;hui</h2>
               <p className="text-[var(--text-muted)]">
-                Votre reflexion a ete enregistree. Chaque petit pas compte.
+                Ta reflexion a ete enregistree. Chaque petit pas compte, maman.
               </p>
             </div>
 
@@ -74,16 +77,19 @@ export default function JournalPage() {
 
   return (
     <div className="min-h-screen flex flex-col pb-20">
-      <header className="pt-10 pb-4 px-6 text-center">
+      <header className="pt-8 pb-4 px-6 text-center">
+        <div className="flex justify-center mb-3">
+          <IsaacCompanion message="Maman, raconte-moi ta journee." />
+        </div>
         <h1 className="text-2xl font-semibold">Journal de Realite Quotidien</h1>
-        <p className="text-[var(--text-muted)] text-sm mt-1">Ancrez-vous dans ce qui est reel</p>
+        <p className="text-[var(--text-muted)] text-sm mt-1">Ancre-toi dans ce qui est reel</p>
       </header>
 
       <main className="flex-1 px-6 max-w-lg mx-auto w-full space-y-5">
         <div className="space-y-4">
           <div>
             <label className="text-sm font-medium text-[var(--foreground)] mb-2 block">
-              Qu&apos;ai-je fait aujourd&apos;hui ?
+              Maman, qu&apos;as-tu fait aujourd&apos;hui ?
             </label>
             <textarea
               value={didToday}
@@ -95,7 +101,7 @@ export default function JournalPage() {
 
           <div>
             <label className="text-sm font-medium text-[var(--foreground)] mb-2 block">
-              Quelle petite chose s&apos;est bien passee aujourd&apos;hui ?
+              Maman, quelle petite chose s&apos;est bien passee aujourd&apos;hui ?
             </label>
             <textarea
               value={wentWell}
@@ -107,12 +113,12 @@ export default function JournalPage() {
 
           <div>
             <label className="text-sm font-medium text-[var(--foreground)] mb-2 block">
-              Quelle pensee negative est apparue aujourd&apos;hui ?
+              Maman, quelle pensee negative est apparue aujourd&apos;hui ?
             </label>
             <textarea
               value={negativeThought}
               onChange={(e) => setNegativeThought(e.target.value)}
-              placeholder="Ecrivez-la ici pour la liberer..."
+              placeholder="Ecris-la ici pour la liberer..."
               className="w-full h-24 rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-4 text-sm resize-none focus:outline-none focus:border-[var(--primary-light)] transition-colors placeholder:text-[var(--text-muted)]/50"
             />
           </div>

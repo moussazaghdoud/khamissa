@@ -151,13 +151,13 @@ export default function EmergencyCalm() {
               <p className={`relative z-10 text-lg font-medium transition-colors duration-[2000ms] ${
                 breathState === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
               }`}>
-                {breathState === "inhale" ? "Inspirez..." : "Expirez..."}
+                {breathState === "inhale" ? "Inspire..." : "Expire..."}
               </p>
             </div>
 
             <div>
               <p className="text-[var(--text-muted)] text-sm">
-                Concentrez-vous uniquement sur votre souffle.
+                Maman, concentre-toi uniquement sur ton souffle.
               </p>
               <p className="text-[var(--text-muted)] text-xs mt-1">
                 4 secondes inspirer / 6 secondes expirer
@@ -177,9 +177,9 @@ export default function EmergencyCalm() {
         {phase === "dhikr" && (
           <>
             <div>
-              <h2 className="text-xl font-semibold mb-2">Ecoutez, respirez</h2>
+              <h2 className="text-xl font-semibold mb-2">Maman, ecoute et respire</h2>
               <p className="text-[var(--text-muted)] text-sm">
-                Laissez le dhikr apaiser votre esprit.
+                Laisse le dhikr apaiser ton esprit.
               </p>
             </div>
 
@@ -228,10 +228,10 @@ export default function EmergencyCalm() {
           <>
             <div>
               <h2 className="text-xl font-semibold mb-2">
-                Quelle pensee vous fait mal en ce moment ?
+                Maman, quelle pensee te fait mal en ce moment ?
               </h2>
               <p className="text-[var(--text-muted)] text-sm">
-                Ecrivez-la pour la sortir de votre esprit.
+                Ecris-la pour la sortir de ton esprit.
               </p>
             </div>
 
@@ -245,8 +245,8 @@ export default function EmergencyCalm() {
 
             <div className="rounded-2xl bg-[var(--surface-warm)] p-4">
               <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                Les emotions intenses peuvent deformer notre perception.
-                Ce que vous ressentez est reel, mais la pensee qui l&apos;accompagne n&apos;est peut-etre pas la realite.
+                Maman, les emotions intenses peuvent deformer la perception.
+                Ce que tu ressens est reel, mais la pensee qui l&apos;accompagne n&apos;est peut-etre pas la realite.
               </p>
             </div>
 
@@ -280,7 +280,7 @@ export default function EmergencyCalm() {
 
             <div>
               <p className="text-[var(--foreground)] font-medium mb-1">
-                Vous avez fait preuve de courage.
+                Maman, tu as fait preuve de courage.
               </p>
               <p className="text-sm text-[var(--text-muted)]">
                 Demander de l&apos;aide, meme a soi-meme, est un acte de force.

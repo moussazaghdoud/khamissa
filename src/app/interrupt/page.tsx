@@ -3,37 +3,38 @@
 import { useState } from "react";
 import NavBar from "@/components/NavBar";
 import SpiritualReminder from "@/components/SpiritualReminder";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { reminders } from "@/lib/spiritual-data";
 import { saveThoughtEntry, detectRuminationPattern } from "@/lib/storage";
 
 const steps = [
   {
-    title: "Quelle pensee tourne en boucle dans votre esprit ?",
-    subtitle: "Ecrivez-la exactement comme elle apparait. Externaliser la pensee reduit son emprise.",
+    title: "Maman, quelle pensee tourne en boucle dans ta tete ?",
+    subtitle: "Ecris-la exactement comme elle apparait. Quand tu la poses ici, elle perd de sa force.",
     placeholder: "Je n'arrete pas de penser que...",
     reminderIndex: 1,
   },
   {
-    title: "Est-ce un FAIT ou une PEUR ?",
-    subtitle: "Beaucoup de pensees ruminantes semblent reelles mais sont basees sur la peur, pas sur des preuves.",
+    title: "Maman, est-ce un FAIT ou une PEUR ?",
+    subtitle: "Beaucoup de pensees semblent reelles mais sont basees sur la peur, pas sur des preuves.",
     placeholder: "Quand je regarde cela clairement, je pense que c'est...",
     reminderIndex: 2,
   },
   {
-    title: "Quelles preuves contredisent cette pensee ?",
-    subtitle: "Pensez a des moments reels qui montrent une image differente.",
+    title: "Maman, quelles preuves contredisent cette pensee ?",
+    subtitle: "Pense a des moments reels qui montrent une image differente.",
     placeholder: "Par exemple, il y a eu un moment ou...",
     reminderIndex: 0,
   },
   {
-    title: "Que diriez-vous a un ami qui pense cela ?",
-    subtitle: "Nous sommes souvent plus bienveillants envers les autres qu'envers nous-memes.",
+    title: "Maman, que dirais-tu a une amie qui pense cela ?",
+    subtitle: "Tu es souvent plus bienveillante envers les autres qu'envers toi-meme.",
     placeholder: "Je lui dirais...",
     reminderIndex: 3,
   },
   {
-    title: "Maintenant, ecrivez une pensee alternative plus saine.",
-    subtitle: "Elle n'a pas besoin d'etre positive - juste plus equilibree et vraie.",
+    title: "Maintenant maman, ecris une pensee alternative plus saine.",
+    subtitle: "Elle n'a pas besoin d'etre positive — juste plus equilibree et vraie.",
     placeholder: "Une facon plus equilibree de voir les choses est...",
     reminderIndex: 4,
   },
@@ -89,16 +90,18 @@ export default function InterruptPage() {
               </svg>
             </div>
 
+            <IsaacCompanion message="Bravo maman, je suis fier de toi !" />
+
             <div>
-              <h2 className="text-2xl font-semibold mb-2">Bravo</h2>
+              <h2 className="text-2xl font-semibold mb-2">Bravo maman</h2>
               <p className="text-[var(--text-muted)]">
-                Vous avez fait un pas puissant en examinant cette pensee avec clarte et compassion.
+                Tu as fait un pas puissant en examinant cette pensee avec clarte et compassion.
               </p>
             </div>
 
             <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-5 text-left space-y-3">
               <div>
-                <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide">Votre pensee</p>
+                <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide">Ta pensee</p>
                 <p className="text-sm mt-1">{answers[0]}</p>
               </div>
               <div>
@@ -129,8 +132,13 @@ export default function InterruptPage() {
 
   return (
     <div className="min-h-screen flex flex-col pb-20">
+      {/* Isaac companion */}
+      <div className="px-6 pt-4 max-w-lg mx-auto">
+        <IsaacCompanion message="Maman, on va regarder cette pensee ensemble." />
+      </div>
+
       {/* Progress */}
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-4">
         <div className="flex gap-2 max-w-lg mx-auto">
           {steps.map((_, i) => (
             <div
@@ -170,7 +178,7 @@ export default function InterruptPage() {
                 Cette pensee est apparue {patternCount} fois.
               </p>
               <p className="text-xs text-[var(--text-muted)] mt-1">
-                Il s&apos;agit peut-etre d&apos;un schema de rumination plutot que de la realite. Examinons-la ensemble.
+                Maman, c&apos;est peut-etre un schema de rumination plutot que la realite. On va l&apos;examiner ensemble.
               </p>
             </div>
           )}

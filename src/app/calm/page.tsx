@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import NavBar from "@/components/NavBar";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { dhikrItems } from "@/lib/spiritual-data";
 import { playDhikrSound } from "@/lib/audio";
 
@@ -83,6 +84,8 @@ export default function CalmPage() {
       <div className="min-h-screen flex flex-col pb-20">
         <div className="flex-1 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full">
           <div className="text-center space-y-8 animate-fade-in">
+            <IsaacCompanion message="Maman, respire avec moi." />
+
             <div>
               <h1 className="text-2xl font-semibold mb-2">Mode Calme</h1>
               <p className="text-[var(--text-muted)] text-sm">
@@ -145,7 +148,7 @@ export default function CalmPage() {
             <p className={`text-lg font-medium capitalize mb-3 transition-colors duration-[2000ms] ${
               phase === "inhale" ? "text-[var(--primary-dark)]" : "text-[var(--accent)]"
             }`}>
-              {phase === "inhale" ? "Inspirez..." : phase === "hold" ? "Retenez..." : "Expirez..."}
+              {phase === "inhale" ? "Inspire..." : phase === "hold" ? "Retiens..." : "Expire..."}
             </p>
             <p className="text-2xl" dir="rtl">{currentDhikr.arabic}</p>
             <p className="text-sm text-[var(--text-muted)] mt-2">{currentDhikr.transliteration}</p>

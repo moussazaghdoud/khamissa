@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import SpiritualReminder from "@/components/SpiritualReminder";
+import IsaacCompanion from "@/components/IsaacCompanion";
 import { reminders } from "@/lib/spiritual-data";
 import { getRuminationTimer, saveRuminationTimer } from "@/lib/storage";
 
@@ -54,18 +55,21 @@ export default function TimerPage() {
 
   return (
     <div className="min-h-screen flex flex-col pb-20">
-      <header className="pt-10 pb-4 px-6 text-center">
+      <header className="pt-8 pb-4 px-6 text-center">
+        <div className="flex justify-center mb-3">
+          <IsaacCompanion message="Maman, on regle l'heure des soucis ensemble." />
+        </div>
         <h1 className="text-2xl font-semibold">Minuteur de Rumination</h1>
         <p className="text-[var(--text-muted)] text-sm mt-1">
-          Planifiez un moment precis pour les pensees difficiles
+          Maman, planifie un moment precis pour les pensees difficiles
         </p>
       </header>
 
       <main className="flex-1 px-6 max-w-lg mx-auto w-full space-y-6">
         <div className="rounded-2xl bg-[var(--surface-warm)] p-5 text-center">
           <p className="text-sm text-[var(--foreground)] leading-relaxed">
-            Au lieu de ruminer toute la journee, accordez a vos inquietudes une fenetre de temps precise.
-            En dehors de ce moment, rappelez-vous doucement : la pensee peut attendre.
+            Maman, au lieu de ruminer toute la journee, accorde a tes inquietudes une fenetre de temps precise.
+            En dehors de ce moment, rappelle-toi doucement : la pensee peut attendre.
           </p>
         </div>
 
@@ -81,19 +85,19 @@ export default function TimerPage() {
             {isWithinWindow ? (
               <>
                 <p className="text-sm font-medium text-[var(--primary-dark)]">
-                  C&apos;est votre temps de reflexion.
+                  Maman, c&apos;est ton temps de reflexion.
                 </p>
                 <p className="text-xs text-[var(--text-muted)] mt-1">
-                  Permettez-vous de traiter vos pensees, puis lachez prise quand le temps sera ecoule.
+                  Permets-toi de traiter tes pensees, puis lache prise quand le temps sera ecoule.
                 </p>
               </>
             ) : (
               <>
                 <p className="text-sm font-medium text-[var(--foreground)]">
-                  Vous pouvez laisser cette pensee se reposer pour l&apos;instant.
+                  Maman, tu peux laisser cette pensee se reposer pour l&apos;instant.
                 </p>
                 <p className="text-xs text-[var(--text-muted)] mt-1">
-                  Votre temps de reflexion est a {time} pendant {duration} minutes.
+                  Ton temps de reflexion est a {time} pendant {duration} minutes.
                 </p>
               </>
             )}
@@ -148,11 +152,11 @@ export default function TimerPage() {
         </div>
 
         <div className="rounded-2xl bg-[var(--surface)] border border-[var(--border)] p-5 text-sm text-[var(--text-muted)] leading-relaxed">
-          <p className="font-medium text-[var(--foreground)] mb-2">Comment ca marche :</p>
+          <p className="font-medium text-[var(--foreground)] mb-2">Maman, comment ca marche :</p>
           <ul className="space-y-1.5 list-disc list-inside">
-            <li>Definissez un moment precis pour traiter les pensees difficiles</li>
-            <li>En dehors de cette fenetre, l&apos;application vous rappelle doucement de lacher prise</li>
-            <li>Cela entraine votre cerveau a comprendre que les soucis ont un temps et un lieu</li>
+            <li>Definis un moment precis pour traiter les pensees difficiles</li>
+            <li>En dehors de cette fenetre, je te rappelle doucement de lacher prise</li>
+            <li>Cela entraine ton cerveau a comprendre que les soucis ont un temps et un lieu</li>
             <li>Progressivement, la rumination en dehors de la fenetre diminue</li>
           </ul>
         </div>
